@@ -1,3 +1,4 @@
+
 # LlapaYachay
 #### Quechua translation: All - Know
 ## Blockchain model for university degree registration and issuance
@@ -74,80 +75,87 @@ The ports of the participating nodes are in the range 5000 - 5004, with each nod
 3.1.	Initial configuration of the blockchain network
 Figure 5 shows the deployed system, with six active containers representing the nodes of the blockchain. The containers acting as nodes in the prototype use the image "node" and are labelled "node1" to "node5". In addition, the public node container is labelled 'public'. This clearly illustrates the configuration and organisation of the nodes within the developed blockchain network.
 
- ![image](https://github.com/horus100/LlapaYachay/assets/77517569/b95c576d-d368-401b-9970-5e0c5df157a1)
  
+ ![246988234-b95c576d-d368-401b-9970-5e0c5df157a1](https://github.com/horus100/LlapaYachay/assets/77517569/98091d16-0e84-4dc9-9ff9-21a358b24c87)
+
 Figure 5. List of Docker containers
 
 Figure 6 shows the initial blockchain setup for a university issuing professional degrees. The blockchain’s name, number of nodes, and private network domain (e.g. IP address or domain, such as 99.999.999.999.999 or domain.com) are defined. Roles are assigned to participants such as the head of the professional degree area, rector, vice-rector, faculty director, and supervising institution, specifying their names and roles. This illustrates the setup process and highlights the importance of role definition and network structure in professional degree awarding and validation.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/97d56258-6528-485f-888f-fc535c1b976f)
+![246988313-97d56258-6528-485f-888f-fc535c1b976f](https://github.com/horus100/LlapaYachay/assets/77517569/e86a0427-f73a-475c-8557-0f836ec13714)
+
 
 Figure 6. Blockchain network initial configuration interface
 
 3.2.	Adding new participants to the network
 Figure 7 shows the node registration form after the blockchain’s initial setup. The user enters their personal details, selects the node type, and sets a password for blockchain authorisation. Additional nodes joining the network must register their data to interact with the blockchain. This illustrates the process of adding new participants and their interaction within the blockchain network.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/68a65d44-6dab-487a-95ed-82e28cdf6158)
+![246988352-68a65d44-6dab-487a-95ed-82e28cdf6158](https://github.com/horus100/LlapaYachay/assets/77517569/f10d0fac-0f01-4e9e-a5de-a2d13fe0f047)
 
 Figure 7. User registration interface as a participating node.
 
 3.3.	Visualisation of the blockchain and its details
 After the initial configuration and registration of the node, participants can create or sign blocks and view the blockchain as a whole. The blockchain is represented by a table, where each row corresponds to a single block, including its hash and the hash of the previous block (Figure 8). This representation makes it easier to understand and monitor the blockchain, ensuring the transparency and integrity of the information stored.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/6b4733f6-ddae-4649-a7ab-5bb8dae4dda3)
+![246988393-6b4733f6-ddae-4649-a7ab-5bb8dae4dda3](https://github.com/horus100/LlapaYachay/assets/77517569/6aac4d75-686f-4546-97ea-0877c03c398d)
 
 Figure 8. Blockchain interface.
 
 3.4.	Interaction with the public node
 The following images (Figures 9 and 10) show the interface of the node that will interact with the interested public. This node offers specific functionalities, such as performing title queries using a hash (Figure 9) and visualising the blockchain in tabular form (Figure 10). These features provide easy and transparent access to the information stored on the blockchain for external users who wish to verify securities or query the blockchain.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/3ed7c02e-3ea3-4fef-a722-8803ece25d79)
+![246988447-3ed7c02e-3ea3-4fef-a722-8803ece25d79](https://github.com/horus100/LlapaYachay/assets/77517569/419e12e6-5fbf-4f0d-8d9c-7bcca220c86c)
+
 
 Figure 9. Public Node Interface, Part 1.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/128ede1f-268d-4196-8e55-6d22676cfd47)
+![246988476-128ede1f-268d-4196-8e55-6d22676cfd47](https://github.com/horus100/LlapaYachay/assets/77517569/7944b252-eb68-4354-adee-62b9a824631c)
+
 
 Figure 10. Public Node Interface, Part 2.
 
 3.5.	Procedure for registering a professional title
 This process is carried out by an assigned user on the network, who is responsible for registering the title data. The user must then enter his or her password to sign the block created (Figure 11). If the registration is successful, the system displays a confirmation message (Figure 12). This approach guarantees the authenticity and integrity of the data registered in the blockchain, while giving responsibility to the assigned user.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/7ba742b5-f261-43cc-b739-1ce438459ee0)
+![246988508-7ba742b5-f261-43cc-b739-1ce438459ee0](https://github.com/horus100/LlapaYachay/assets/77517569/b1dd9f1d-7798-406f-bdf7-8eb193f946d0)
 
 Figure 11. Registration form for a professional title.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/2b50e33f-b054-44e2-b637-3702ce1f9cdd)
+![246988534-2b50e33f-b054-44e2-b637-3702ce1f9cdd](https://github.com/horus100/LlapaYachay/assets/77517569/1ae50dab-f931-4e69-b5dd-7cae183c9e71)
 
 Figure 12. Registration confirmation.
 
 3.6.	Procedure for the signature of the professional title
 This process is performed by nodes with block signing ability. The “Signature” section shows records waiting to be signed (Figure 13). Pressing the Sign button opens a form with professional title data and a field for entering the personal key to sign the title (Figure 14). A warning is displayed upon completion indicating success (Figure 15). This approach ensures professional title data authenticity and integrity and provides accountability to signing nodes. 
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/a6f13df9-5573-4191-8804-2778ace917e2)
+![246988557-a6f13df9-5573-4191-8804-2778ace917e2](https://github.com/horus100/LlapaYachay/assets/77517569/6388df6a-8deb-46c5-b53a-8426f8357ae7)
 
 Figure 13. Interface for signing a title.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/13d8528b-28d3-40b8-9989-30611b464e3c)
+![246988594-13d8528b-28d3-40b8-9989-30611b464e3c](https://github.com/horus100/LlapaYachay/assets/77517569/05d16176-d166-47be-8839-b750ffa9be59)
+
 
 Figure 14. Form for signing the professional title.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/34aaa0f1-f544-4b3c-b2de-2945deee0627)
+![246988620-34aaa0f1-f544-4b3c-b2de-2945deee0627](https://github.com/horus100/LlapaYachay/assets/77517569/67bfd2ac-3df3-486b-b72d-a822f6176c76)
+
 
 Figure 15. confirmation notification.
 
 3.7.	Notification, award and verification of the professional title
 When a professional title is registered, an email with the title’s hash for verification is sent (Figure 16). Once signatures are complete, the title’s PDF with a QR code for verification is sent (Figure 17). Scanning the QR code or entering the title’s hash in the public node’s query function displays the title with supporting block hashes (Figure 18). This guarantees the title’s authenticity and makes verification easy.
 
-![mails](https://github.com/horus100/LlapaYachay/assets/77517569/f4ad6b09-a904-4836-9520-b1f361ff783e)
-
+![250744514-f4ad6b09-a904-4836-9520-b1f361ff783e](https://github.com/horus100/LlapaYachay/assets/77517569/ab6d1713-629c-48ab-b3f7-3c3df7c1423c)
 
 Figure 16. Sent emails.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/90c5b04f-0a5b-4416-a93b-78eef5f4605d)
+![246988666-90c5b04f-0a5b-4416-a93b-78eef5f4605d](https://github.com/horus100/LlapaYachay/assets/77517569/461da826-9079-4013-b45a-39c9cad96683)
 
 Figure 17. Model of the professional title to be sent.
 
-![image](https://github.com/horus100/LlapaYachay/assets/77517569/5b0035b6-fbac-4976-9b60-95eed9909b2f)
+
+![246988693-5b0035b6-fbac-4976-9b60-95eed9909b2f](https://github.com/horus100/LlapaYachay/assets/77517569/edc9d810-bc79-4610-8897-8c7f01378f14)
+
 
 Figure 18: Verification of a professional title.
 
