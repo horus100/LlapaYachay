@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{%block contenido%}
+    <div class="container" >
+      <div class="container my-4 py-4 text-white text-center g-3" style="width:80% ;background-color:#A6A628;">
+        <div>
+          <center>
+            <img src="{{url_for ('static', filename = 'img/logo.jpg')}}" alt="LOGO" width="90" height="90" >
+          </center>
+        </div>
+        <div class="row g-2">
+          <blockquote class="blockquote"><center> <strong> DATOS DEL EGRESADO </strong></center></blockquote>
+          <div class="col-md-4 ">
+            <label class="form-label">Nombres y Apellidos</label>
+            <b><input  class="form-control text-center" name="ROL Nodo 1" value="{{data['block']['registro']['Nombre']}}" readonly></input></b>
+          </div>
+          <div class="col-md-4 ">
+            <label class="form-label">DNI</label>
+            <b><input  class="form-control text-center" name="ROL Nodo 1" value="{{data['block']['registro']['DNI']}}" readonly></input></b>
+          </div>
+          <div class="col-md-4 ">
+            <label class="form-label">Carrera Profesional</label>
+            <b><input  class="form-control" name="ROL Nodo 1" value="{{data['block']['registro']['Carrera Profesional']}}" readonly></input></b>
+          </div>
+          <div class="col-md-4 ">
+            <label class="form-label">GRADO</label>
+            <b><input  class="form-control text-center" name="ROL Nodo 1" value="{{data['block']['registro']['Grado']}}" readonly></input></b>
+          </div>
+          <div class="col-md-4 ">
+            <label class="form-label">Año de Egreso</label>
+            <b><input  class="form-control text-center" name="ROL Nodo 1" value="{{data['block']['registro']['Year de egreso']}}" readonly></input></b>
+          </div>
+          </div>
+          <div class="col-md-12 my-2">
+            <label class="form-label">HASH DATO</label>
+            <b><input  class="form-control text-center" name="ROL Nodo 1" value="{{data['block']['metadata']['hash_Dato']}}" readonly></input></b>
+          </div>
+          
+          <div class="row g-2">
+            <label><b>FIRMAS</b></label>
+            {% set i=0 %}
+            {% for firma   in firmas  %}
+            <div class="col-md-3 ">
+                <p>      
+                  <button class="btn btn-primary col" type="button" data-bs-toggle="collapse" data-bs-target="#dato{{i}}" aria-expanded="false" aria-controls="dato{{i}}">{{firma['block']['registro']['RolFirma']}}</button>
+                </p>
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="dato{{i}}">
+                      <div class="card card-body text-black">
+                        {{firma['block']['registro']['Firma']}}    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            {% set i=i+1 %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

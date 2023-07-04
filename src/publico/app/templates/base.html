@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- DATATABLES -->
+    <!--  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+      .dataTable > thead > tr > th[class*="sort"]::after{display: none}
+      .dataTable > thead > tr > th[class*="sort"]::before{display: none}
+      
+      div.dataTables_wrapper div.dataTables_length select {
+        width: 30%;}
+  </style>
+
+</head>
+<body style="background-color: #798AA9;">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+          {% if message == "Su solicitud se ha registrado correctamente"%}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+                    
+          {%else%}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {%endif%}
+        {% endfor %}         
+    {% endif %}
+    {% endwith %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"> 
+              <img src="{{url_for ('static', filename = 'img/blockchain.png')}}" alt="" width="30" height="30" class="d-inline-block align-text-top">
+              <b>Sistema Blockchain de Titulos Profesional</b> </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#BlockchainBD">Ver Blockchain</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#video">Que es Blockchain</a>
+                </li>
+              </ul>
+              <form class="d-flex" action="/consulta" method="POST">
+                <input class="form-control me-2" type="text" placeholder="Hash del Titulo" name="Tbuscar">
+                <button class="btn btn-outline-success" type="submit">Consulta Titulo</button>
+              </form>
+            </div>
+          </div>
+    </nav>
+    {%block contenido%}{% endblock %}
+
+
+    
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script>
+    <!-- DATATABLES -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+    </script>
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+    </script>
+  <script>
+      $(document).ready(function () {
+          $('#tablax').DataTable({
+              language: {
+                  processing: "Tratamiento en curso...",
+                  search: "Buscar&nbsp;:",
+                  lengthMenu: "Agrupar de _MENU_ items",
+                  info: "Mostrando bloques: _END_ de un total de _TOTAL_ items",
+                  infoEmpty: "No existen datos.",
+                  infoFiltered: "(filtrado de _MAX_ elementos en total)",
+                  infoPostFix: "",
+                  loadingRecords: "Cargando...",
+                  zeroRecords: "No se encontraron datos con tu busqueda",
+                  emptyTable: "No hay datos disponibles de la blockchain.",
+                  paginate: {
+                      first: "Primero",
+                      previous: "Anterior",
+                      next: "Siguiente",
+                      last: "Ultimo"
+                  },
+              
+                  aria: {
+                      sortAscending: ": active para ordenar la columna en orden ascendente",
+                      sortDescending: ": active para ordenar la columna en orden descendente"
+                  }
+              },
+              "aaSorting": [],
+              scrollY: 400,
+              lengthMenu: [ [8,16, 32, -1], [8,16, 32, "All"] ],
+          });
+      });
+  </script>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</body>
+</html>

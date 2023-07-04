@@ -1,0 +1,137 @@
+{% extends "principal.html" %}
+
+{%block scrihadd%}
+<script>
+'use strict'
+
+window.addEventListener('load', function () {
+    var select = document.querySelector("#option");
+    var i = "";
+    var input = document.querySelector("#input");
+    var input1 = document.querySelector("#input1");
+
+    select.addEventListener('change', function (e) {
+        e.preventDefault();
+        input.innerHTML = '';
+        for (i = 0; i < select.value; i++) {
+            createInputs();
+        }
+        input1.innerHTML = '';
+        for (i = 0; i < select.value; i++) {
+            createInputs1();
+        }
+        input2.innerHTML = '';
+        for (i = 0; i < select.value; i++) {
+            createInputs2();
+        }
+    });
+
+    function createInputs() {
+        var element = document.createElement('div');
+        element.innerHTML = `
+    <div class="form-group">
+        <p>Nombre del Nodo ${i + 1}</p>
+        <input type="text" class="form-control" name="Nodo ${i + 1}" required></input>
+    </div>
+    `;
+        input.appendChild(element);
+    }
+    function createInputs1() {
+      var element = document.createElement('div');
+      element.innerHTML = `
+  <div class="form-group">
+      <p>Funcion ${i + 1}</p>
+      <select id="option" class="form-select" name="Funcion ${i + 1}" required>
+        <option id="Firmar" value="1">Firmar</option>
+        <option id="Crear Bloque" value="2">Crear Bloque</option>
+        <option id="Lectura" value="3">Lectura</option>
+        <option id="Firma y Crear" value="3">Firma y Crear Bloque</option>
+
+  </div>
+  `;
+      input1.appendChild(element);
+  }
+  function createInputs2() {
+    var element = document.createElement('div');
+    element.innerHTML = `
+    <div class="form-group">
+      <p>ROL Nodo ${i + 1}</p>
+      <b><input  class="form-control" name="ROL Nodo ${i + 1}" value="Nodo Peer" readonly></input></b>
+    </div>`;
+    input2.appendChild(element);
+}
+});
+</script>
+
+{%endblock%}
+
+{%block contenido%}
+    <div class="container w-50" style="background-color:#D9D9EB;">
+        <form class="row m-auto py-3 g-2" method="POST">
+            <div class="col-md-8 ">
+              <label for="validationServer01" class="form-label">Nombre de la Red Blockchain</label>
+              <input type="text" class="form-control" name="Nombre de red" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" onchange="ShowSelected();">Nodos Participantes</label>
+              <select id="option" class="form-select" name="qtynodos"required>
+                <option value="0">Seleccione una cantidad</option>
+                <option id="1" value="1">UNO</option>
+                <option id="2" value="2">DOS</option>
+                <option id="3" value="3">TRES</option>
+                <option id="4" value="4">CUATRO</option>
+                <option id="5" value="5">CINCO</option>
+            </select>
+            </div>
+            <div class="col-md-12 ">
+              <label for="validationServer01" class="form-label">Dominio de la Red Privada</label>
+              <input type="text" class="form-control" name="DNS" required>   
+            </div>
+            
+            <div class="col-md-6" id="input">
+            </div>
+            <div class="col-md-3" id="input1">
+            </div>
+            <div class="col-md-3" id="input2">
+            </div>
+
+            <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" required>
+                <label class="form-check-label" for="invalidCheck3">
+                Acepta haber configurado correctamente la red blockchain
+                </label>
+
+            </div>
+            </div>
+            <div class="col-12">
+            <button class="btn btn-success" type="submit">Crear Red</button>
+            </div>
+        </form>
+    </div>
+
+
+    {%block diploma%}{%endblock%}
+    {%block bdblock%}
+      <div class="container my-3 p-4" style="background-color:#79B4A2;">
+        <table id="tablax" class="table table-striped table-bordered" style="width:100%">
+          <thead>
+            <th>Block ID</th>
+            <th>Fecha y Hora</th>
+            <th>Hash Bloque</th>
+            <th>Hash_Anterior</th>
+          </thead>
+          <tbody>
+            {% for col in datablock %}
+                <tr>
+                  <td>{{col['block']['metadata']['index']}}</td>
+                  <td>{{col['block']['metadata']['timestamp']}}</td>
+                  <td>{{col['hash1']}}</td>
+                  <td>{{col['metadata']['previous_hash']}}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {%endblock%}
+{%endblock%}

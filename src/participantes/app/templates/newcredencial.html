@@ -1,0 +1,164 @@
+{% extends "principal.html" %}
+{% block scrihadd%} 
+  <script>
+
+function verificarPasswords() {
+
+  // Ontenemos los valores de los campos de contraseñas 
+  pass1 = document.getElementById('pass1');
+  pass2 = document.getElementById('pass2');
+
+  // Verificamos si las constraseñas no coinciden 
+  if (pass1.value != pass2.value) {
+
+      // Si las constraseñas no coinciden mostramos un mensaje 
+      document.getElementById("error").classList.add("mostrar");
+
+      return false;
+  } else {
+
+      // Si las contraseñas coinciden ocultamos el mensaje de error
+      document.getElementById("error").classList.remove("mostrar");
+
+      // Mostramos un mensaje mencionando que las Contraseñas coinciden 
+      document.getElementById("ok").classList.remove("ocultar");
+
+      // Desabilitamos el botón de login 
+      document.getElementById("login").disabled = true;
+
+      // Refrescamos la página (Simulación de envío del formulario) 
+      setTimeout(function() {
+        location.reload();
+    }, 30);
+
+      return true;
+  }
+
+}
+  </script>
+{%endblock%}
+{% block stylehadd %}
+  <style>
+    .ocultar {
+      display: none;
+  }
+   
+  .mostrar {
+      display: block;
+  }
+  
+  </style>
+
+{% endblock %}
+
+{%block contenido%}
+    <div class="container w-75 " style="background-color:#7D5197;">
+         
+        <div id="msg"></div>
+        
+        <!-- Mensajes de Verificación -->
+        <div id="error" class="alert alert-danger ocultar" role="alert">
+            Las Contraseñas no coinciden, vuelve a intentar !
+        </div>
+
+
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+           {% for message in messages %}
+
+                    <div class="alert alert-warning alert-dismissable" role="alert">
+                       
+                        {{message}}
+                    </div>
+
+            {% endfor %}         
+        {% endif %}
+      {% endwith %}
+
+        
+
+        <form class="row g-3 text-white mt-3 py-2" method="POST" onsubmit="verificarPasswords(); return false">
+            <div class="col-md-4">
+            <label for="validationServer01" class="form-label">Nombres</label>
+            <input type="text" class="form-control" name="Nombre" required>
+            
+            </div>
+            <div class="col-md-4">
+            <label for="validationServer02" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" name="Apellido" required>
+            </div>
+            <div class="col-md-4">
+            <label for="validationServerUsername" class="form-label">Documento de Identidad</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend3">🆔</span>
+                <input type="number" class="form-control" name="DNI" required>
+                
+            </div>
+            </div>
+            
+            <div class="col-md-4">
+            <label for="validationServer04" class="form-label">Nodo Peer</label>
+            <select class="form-select" name="Rol" required>
+
+              {% set cant = (data['qtynodos'] |int) +1 %}
+
+              {% for n in range(1,cant) %}
+                  {% set valor = "Nodo "+(n| string) %}
+              
+                <option>{{data[valor]}}</option>
+            
+              {%endfor%}
+            </select>
+            
+            </div>
+            <div class="col-md-4">
+            <label for="validationServer05" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="password" id="pass1" required>
+
+            </div>
+            <div class="col-md-4">
+            <label for="validationServer05" class="form-label">Repetir contraseña</label>
+            <input type="password" class="form-control"  name="password1" id="pass2" required>
+            
+            </div>
+            <div class="col-12 text-center">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" required>
+                <label class="form-check-label" for="invalidCheck3">
+                Acepta haber completado correctamente sus datos
+                </label>
+
+            </div>
+            </div>
+            <div class="col-12 text-center">
+            <button class="btn btn-lg text-white shadow-lg " type="submit" style="background-color:#1C043B;"> <b>REGISTRAR</b></button>
+            </div>
+        </form>
+    </div>
+
+
+    {%block diploma%}{%endblock%}
+    {%block bdblock%}
+      <div class="container my-3 p-4" style="background-color:#79B4A2;">
+        <table id="tablax" class="table table-striped table-bordered" style="width:100%">
+          <thead>
+            <th>Block ID</th>
+            <th>Fecha y Hora</th>
+            <th>Hash Bloque</th>
+            <th>Hash_Anterior</th>
+          </thead>
+          <tbody>
+            {% for col in datablock %}
+                <tr>
+                  <td>{{col['block']['metadata']['index']}}</td>
+                  <td>{{col['block']['metadata']['timestamp']}}</td>
+                  <td>{{col['hash1']}}</td>
+                  <td>{{col['metadata']['previous_hash']}}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {%endblock%}
+{%endblock%}
